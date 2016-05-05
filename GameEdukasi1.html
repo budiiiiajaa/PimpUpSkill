@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "UTF-8">
+<title>Game Edukasi Anak-anak</title>
+<body background= "hijau.png">
+</head>
+<style>
+	#petunjuk{
+		font-size : 1.4em;
+		border-bottom : solid #99f;
+		padding-bottom : 10px;
+		}
+	#panelUtama{
+		margin-top : 10px;
+		}
+	#panelKiri{
+		position : absolute;
+		left : 0px;
+		width : 300px;
+		height : auto;
+		}
+	#panelKanan{
+		position : absolute;
+		left : 500px;
+		width : 200px;
+		height : auto;
+		}
+	.kotak{
+		float : right;
+		background-color : #cf9;
+		left : 0px;
+		top : 100px;
+		height : 230px;
+		width : 280px;
+		margin : 2px;
+		}
+	.objek{float : left;
+	}
+	#pemisah{float : right;
+	}
+</style>
+<script>
+	var objek = ["objek1","objek2","objek3"];
+	var pasangan = ["jakarta","bogor","jogja"];
+	
+	function allowDrop(ev){
+		ev.preventDefault();
+	}
+	function tarikObjek(ev){
+		ev.dataTransfer.setData("Data",ev.target.id);
+	}
+	function jatuhkanObjek(ev){
+		var idDitarik = ev.dataTransfer.getData("Data");
+		ev.preventDefault();
+		ev.target.appendChild(document.getElementById(idDitarik));
+	}
+</script>
+<body>
+	<div id = "petunjuk">Mencocokan Gambar Kota<br>
+		Tarik gambar yang ada disebelah kiri dan <br>
+		letakkan pada kotak pasangan disebelah kanan</div>
+	<a href = "GameEdukasi2.html">Next</a>
+	<div id = "panelUtama">
+		<div id = "panelKiri">
+			<img id = "objek1" src = "monas.jpg"
+				class = "objek" draggable = "true"
+				ondragstart = "tarikObjek(event)"
+				width = "280" height = "210">
+		</div>
+	<div id = "panelKanan">
+		<div id = "bogor" class = "kotak"
+			ondragover = "allowDrop(event)">Bogor
+		</div>
+		<div id = "jogja" class = "kotak"
+			ondragover = "allowDrop(event)">Jogja
+		</div>
+		<div id = "jakarta" class = "kotak"
+			ondrop = "jatuhkanObjek(event)"
+			ondragover = "allowDrop(event)">Jakarta
+		</div>
+	</div>
+</div>
+</body>
+</html>
